@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from alive_progress import alive_bar
+from data_saver import DataSaver
 
 
 class UrlCollector:
@@ -10,6 +11,7 @@ class UrlCollector:
 
     def get_advert_urls(self, pagination_range=(1, 10)):
         urls = []
+        saver = DataSaver()
         i = pagination_range[0]
         pages = pagination_range[1] - pagination_range[0] + 1
 
@@ -31,5 +33,7 @@ class UrlCollector:
                 bar()
                 pages -= 1
                 i += 1
+
+        saver.save_advert_urls(urls)
 
         return urls
