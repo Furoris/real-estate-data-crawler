@@ -8,6 +8,7 @@ class UrlCollector:
     BASE_URL = 'https://www.otodom.pl'
     LISTING_URL = 'https://www.otodom.pl/pl/wyniki/sprzedaz/dom/cala-polska?page='
     NO_RESULT_ELEMENT = '[data-cy="no-search-results"]'
+    LISTING_ITEM_LINK = '[data-cy="listing-item-link"]'
 
     def get_advert_urls(self, pagination_range=(1, 10)):
         urls = []
@@ -25,7 +26,7 @@ class UrlCollector:
                     print('No more results found for page ' + str(i))
                     break
 
-                links = soup.select('[data-cy="listing-item-link"]')
+                links = soup.select(self.LISTING_ITEM_LINK)
                 for link in links:
                     url = link.attrs['href']
                     urls.append(self.BASE_URL + url)
