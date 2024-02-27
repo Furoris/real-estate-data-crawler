@@ -26,8 +26,10 @@ class DataSaver:
         return urls
 
     def save_advert_data(self, data):
-        data += self.open_advert_data()
         df = pd.DataFrame.from_dict(data)
+        saved_data = self.open_advert_data()
+        if saved_data.__len__() > 0:
+            df = pd.concat([df, saved_data])
         df = df.drop_duplicates(['hash'], keep='first')
         df.to_csv(self.SAVE_LOCATION + self.ADVERT_DATA_FILE, index=False)
 

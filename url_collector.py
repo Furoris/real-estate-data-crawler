@@ -16,7 +16,7 @@ class UrlCollector:
         i = pagination_range[0]
         pages = pagination_range[1] - pagination_range[0] + 1
 
-        with alive_bar(pages, title='Processing advert urls: ') as bar:
+        with alive_bar(pages, title='Processing advert pages: ') as bar:
             while i <= pagination_range[1]:
                 response = requests.get(self.LISTING_URL + str(i))
                 soup = BeautifulSoup(response.content, "html.parser")
