@@ -15,7 +15,7 @@ rows = []
 with alive_bar(advert_urls.__len__(), title='Processing adverts data: ') as bar:
     for advert_url in advert_urls:
         rows.append(data_collector.collect(advert_url))
-        if rows.__len__() % 5 == 0:
+        if rows.__len__() % 20 == 0:
             time.sleep(3)  # sleep 3 second every 5 pages processed
         bar()
 
