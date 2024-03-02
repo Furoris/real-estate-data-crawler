@@ -35,9 +35,9 @@ class DataCollector:
 
 
 def get_price(price_element):
-    price_string = price_element[0].string.replace(' ', '').replace('zł', '')
+    price_string = price_element[0].string.replace(' ', '').replace('zł', '').replace(',', '.')
     if 'EUR' in price_string:
         price_string = price_string.replace('EUR', '')
         price_string = float(price_string) * 4.32
 
-    return int(price_string)
+    return int(float(price_string))
